@@ -12,3 +12,4 @@ vision_aided_loss
 clean-fid
 lpips
 loguru
+wandb
