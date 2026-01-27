@@ -1,0 +1,67 @@
+quantum:
+  num_modes: 20
+  num_photons: 3
+  epsilon: 1.0e-5
+  computation_space: UNBUNCHED
+  trainable_parameters:
+    - phi
+  quantum: false
+  start_path: null
+  processes: 1
+
+classical:
+  cl_comp: false
+  random_ablation: false
+  random_trained: false
+
+dataset:
+  dataset_name: quandelagl/bdd-100k
+  dataset_folder: ./data/small_bdd
+  train_img_prep: resize_128
+  val_img_prep: resize_128
+  train_batch_size: 1
+  dataloader_num_workers: 0
+  quantum_dims: [4, 16, 16]
+  prompt_src: Driving in the night
+  prompt_tgt: Driving in the day
+  training_images: 0.05
+  cleanup: True
+
+training:
+  learning_rate: 1.0e-5
+  max_train_epochs: 1
+  max_train_steps: 5
+  validation_steps: 100
+  lambda_gan: 0.5
+  lambda_idt: 1.0
+  lambda_cycle: 1.0
+  lambda_cycle_lpips: 10.0
+  lambda_idt_lpips: 1.0
+  gan_disc_type: vagan_clip
+  gan_loss_type: multilevel_sigmoid
+  hf_model_path: model_251.pkl
+  revision: null
+  variant: null
+  lora_rank_unet: 64
+  lora_rank_vae: 2
+  unet_trained: false
+  viz_freq: 50
+  output_dir: ./verification_runs/gpu_smoke
+  report_to: wandb
+  tracker_project_name: gpu_smoke_test
+  validation_num_images: 2
+  checkpointing_steps: 1000
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 0.01
+  adam_epsilon: 1.0e-8
+  max_grad_norm: 1.0
+  lr_scheduler: constant
+  lr_warmup_steps: 0
+  lr_num_cycles: 1
+  lr_power: 1.0
+  seed: 1234
+  gradient_accumulation_steps: 1
+  allow_tf32: true
+  gradient_checkpointing: false
+  enable_xformers_memory_efficient_attention: false

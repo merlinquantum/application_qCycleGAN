@@ -1,0 +1,67 @@
+quantum:
+  num_modes: 20
+  num_photons: 3
+  epsilon: 1.0e-5
+  computation_space: UNBUNCHED
+  trainable_parameters:
+    - phi
+  quantum: false
+  start_path: null
+  processes: 4
+
+classical:
+  cl_comp: false
+  random_ablation: false
+  random_trained: false
+
+dataset:
+  dataset_name: quandelagl/bdd-100k
+  dataset_folder: ../data/dataset_full_scale/
+  train_img_prep: no_resize
+  val_img_prep: no_resize
+  train_batch_size: 4
+  dataloader_num_workers: 0
+  quantum_dims: [4, 16, 16]
+  prompt_src: Driving in the night
+  prompt_tgt: Driving in the day
+  training_images: 1.0
+  cleanup: false
+
+training:
+  learning_rate: 5.0e-6
+  max_train_epochs: 100
+  max_train_steps: null
+  validation_steps: 500
+  lambda_gan: 0.5
+  lambda_idt: 1.0
+  lambda_cycle: 1.0
+  lambda_cycle_lpips: 10.0
+  lambda_idt_lpips: 1.0
+  gan_disc_type: vagan_clip
+  gan_loss_type: multilevel_sigmoid
+  hf_model_path: model_251.pkl
+  revision: null
+  variant: null
+  lora_rank_unet: 128
+  lora_rank_vae: 4
+  unet_trained: false
+  viz_freq: 20
+  output_dir: a
+  report_to: wandb
+  tracker_project_name: gparmar_unpaired_d2n
+  validation_num_images: -1
+  checkpointing_steps: 1000
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 0.01
+  adam_epsilon: 1.0e-8
+  max_grad_norm: 10.0
+  lr_scheduler: constant
+  lr_warmup_steps: 500
+  lr_num_cycles: 1
+  lr_power: 1.0
+  seed: 42
+  gradient_accumulation_steps: 1
+  allow_tf32: false
+  gradient_checkpointing: false
+  enable_xformers_memory_efficient_attention: false

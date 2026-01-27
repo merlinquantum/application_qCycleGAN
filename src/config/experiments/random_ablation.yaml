@@ -1,0 +1,59 @@
+quantum:
+  start_path: /root/projects/qCycleGAN/HybridCycleGAN_AirbusBMW/CycleGAN-Turbo/src_quantum/experiments/base_classical/resize_128/20251222-131043/checkpoints/model_2500.pkl
+
+classical:
+  cl_comp: false
+  random_ablation: true
+  random_trained: false
+  random_ablation_hidden_dim : 128
+
+dataset:
+  dataset_name: quandelagl/bdd-100k
+  dataset_folder: ../data/dataset_full_scale/
+  train_img_prep: resize_128
+  val_img_prep: resize_128
+  train_batch_size: 1
+  dataloader_num_workers: 0
+  quantum_dims: [4, 16, 16]
+  prompt_src: Driving in the night
+  prompt_tgt: Driving in the day
+  training_images: 1.0
+  cleanup: false
+
+training:
+  unet_trained: true
+  learning_rate: 1.0e-5
+  max_train_epochs: 100
+  max_train_steps: 2000
+  validation_steps: 500
+  lambda_gan: 0.5
+  lambda_idt: 1.0
+  lambda_cycle: 1.0
+  lambda_cycle_lpips: 10.0
+  lambda_idt_lpips: 1.0
+  gan_disc_type: vagan_clip
+  gan_loss_type: multilevel_sigmoid
+  hf_model_path: null
+  revision: null
+  variant: null
+  lora_rank_unet: 8
+  lora_rank_vae: 4
+  viz_freq: 20
+  output_dir: ./experiments/ablation/random
+  tracker_project_name: qCycleGan
+  validation_num_images: -1
+  checkpointing_steps: 250
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 0.01
+  adam_epsilon: 1.0e-8
+  max_grad_norm: 10.0
+  lr_scheduler: constant
+  lr_warmup_steps: 500
+  lr_num_cycles: 1
+  lr_power: 1.0
+  seed: 42
+  gradient_accumulation_steps: 1
+  allow_tf32: false
+  gradient_checkpointing: false
+  enable_xformers_memory_efficient_attention: true
