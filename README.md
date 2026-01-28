@@ -2,6 +2,12 @@
 
 This repository contains the refactored training and evaluation codebase for the Airbus/BMW Hybrid CycleGAN-Turbo project. It integrates quantum-enhanced image-to-image translation using Boson samplers with the classical CycleGAN-Turbo framework. The **classical component** for this hybrid model is a diffusion-based image translation network (CycleGAN-Turbo) trained with LoRA adapters, from https://github.com/GaParmar/
 
+## Model Overview
+
+![Hybrid CycleGAN-Turbo with Boson Sampler](src/models.png)
+
+The model couples a CycleGAN-Turbo style diffusion backbone (UNet + VAE with LoRA adapters) with a Boson sampler encoder. The quantum encoder maps image embeddings from the VAE decoder into a photonic circuit representation, and its outputs are fused back into the translation pipeline. Training can run in full quantum mode, classical-only LoRA mode, or ablation mode with a random MLP in place of the sampler.
+
 ## Quick Start
 
 ### 1. Training Your First Model
